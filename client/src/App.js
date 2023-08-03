@@ -7,17 +7,14 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Write from "./pages/Write";
 import Home from "./pages/Home";
-import Single from "./pages/Single";
+import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { AuthContext } from "./context/authContext.js";
-import { useContext } from "react";
+import Contactus from "./pages/Contactus";
 import "./style.scss"
 
 
 const Layout = () => {
-  const { currentUser, login, logout } = useContext(AuthContext);
-  console.log("Is Authenticated?", currentUser);
   return (
     <>
       <Navbar />
@@ -37,12 +34,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/post/:id",
-        element: <Single />,
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/write",
         element: <Write />,
+      },
+      {
+        path: "/contactus",
+        element: <Contactus />,
       },
     ],
   },

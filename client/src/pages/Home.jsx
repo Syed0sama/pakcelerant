@@ -1,44 +1,17 @@
 import React from "react";
 
-import { Link, useLocation } from "react-router-dom";
+
 
 
 const Home = () => {
 
-  const posts = [
-    {
-      id: 1,
-      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-    },
-  ]
-
-  const getText = (html) =>{
-    const doc = new DOMParser().parseFromString(html, "text/html")
-    return doc.body.textContent
-  }
-
 
   return (
-    <div className="home">
-      <div className="posts">
-        {posts.map((post) => (
-          <div className="post" key={post.id}>
-            <div className="img">
-              <img src={`../upload/${post.img}`} alt="" />
-            </div>
-            <div className="content">
-              <Link className="link" to={`/post/${post.id}`}>
-                <h1>{post.title}</h1>
-              </Link>
-              <p>{getText(post.desc)}</p>
-              <button>Read More</button>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div>
+      <h1>Home page</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae officiis provident reiciendis ullam perspiciatis labore illo, dolor qui aut optio non atque magnam, expedita cum soluta cupiditate? Corporis, molestiae enim.</p>
     </div>
-  );
+    )
 };
 
 export default Home;
