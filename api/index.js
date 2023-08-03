@@ -9,6 +9,6 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 
 
-app.listen(8800, () => {
+app.listen(8000, () => {
   console.log("Connected!");
 });

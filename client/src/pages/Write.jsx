@@ -79,6 +79,7 @@ const Write = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log((JSON.parse(localStorage.getItem("user")).id))
     e.preventDefault();
     try {
       console.log(formData);
