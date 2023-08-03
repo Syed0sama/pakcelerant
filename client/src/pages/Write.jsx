@@ -6,6 +6,7 @@ import axios from "axios";
 import "../style.scss";
 
 const Write = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(!!JSON.parse(localStorage.getItem("user"))?.id);
   const [formData, setFormData] = useState({
     companyName: "",
     companyUrl: "",
@@ -57,18 +58,27 @@ const Write = () => {
     founderEmployment: "",
     founderHackingExperience: "",
     founderImpressiveAchievement: "",
-    uid: JSON.parse(localStorage.getItem("user")).id,
+    uid: " ",
     userDetails: ""
 
   });
+
   const [err, setError] = useState(null);
   useEffect(() => {
-    // Load form data from local storage if it exists
-    const storedData = JSON.parse(localStorage.getItem("formData"));
-    if (storedData) {
-      setFormData(storedData);
+    if (isLoggedIn) {
+      // User is logged in, update the uid in the formData
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        uid: JSON.parse(localStorage.getItem("user")).id,
+      }));
+    } else {
+      // User is logged out, set the uid to an empty string
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        uid: "",
+      }));
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -92,7 +102,8 @@ const Write = () => {
   };
   return (
     <div className="google-form-container">
-      
+      {isLoggedIn ? (
+      <>
       <h1 className="google-form-header">Company Profile</h1>
       <form onSubmit={handleSubmit} className="google-form">
 
@@ -632,6 +643,10 @@ const Write = () => {
           Submit
         </button>
       </form>
+      </>
+       ) : (
+        <p>Please login to apply.</p>
+      )}
     </div>
   );
 };
